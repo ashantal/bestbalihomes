@@ -26,7 +26,6 @@ exports.createPages = ({ graphql, actions }) => {
       const numPages = Math.ceil(
         posts.slice(postsPerFirstPage).length / postsPerPage
       )
-
       // Create main home page
       createPage({
         path: `/`,
@@ -54,9 +53,12 @@ exports.createPages = ({ graphql, actions }) => {
       })
 
       // Create each individual post
+      console.log('posts')
       posts.forEach((edge, i) => {
         const prev = i === 0 ? null : posts[i - 1].node
         const next = i === posts.length - 1 ? null : posts[i + 1].node
+        console.log(edge)
+
         createPage({
           path: `${edge.node.slug}/`,
           component: path.resolve(`./src/templates/post.js`),
@@ -125,7 +127,12 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const pages = result.data.allContentfulPage.edges
+
+      console.log('pages')
+
       pages.map(({ node }) => {
+        console.log(node)
+
         createPage({
           path: `${node.slug}/`,
           component: path.resolve(`./src/templates/page.js`),

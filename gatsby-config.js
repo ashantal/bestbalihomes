@@ -16,6 +16,7 @@ try {
     throw new Error('Contentful space ID and access token need to be provided.')
   }
 }
+console.log(contentfulConfig)
 
 module.exports = {
   siteMetadata: {

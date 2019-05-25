@@ -14,7 +14,6 @@ const Index = ({ data, pageContext }) => {
   const featuredPost = posts[0].node
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
-
   return (
     <Layout>
       <SEO />
@@ -47,7 +46,8 @@ const Index = ({ data, pageContext }) => {
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
     allContentfulPost(
-      sort: { fields: [publishDate], order: DESC }
+      filter:{ node_locale: {eq: "en-US"} }
+      sort: { fields: [slug], order: ASC }
       limit: $limit
       skip: $skip
     ) {

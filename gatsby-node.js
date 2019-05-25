@@ -8,7 +8,8 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(`
       {
         allContentfulPost(
-          sort: { fields: [publishDate], order: DESC }
+          filter:{ node_locale: {eq: "en-US"} }
+          sort: { fields: [slug], order: ASC }
           limit: 10000
         ) {
           edges {
